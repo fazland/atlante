@@ -1,9 +1,9 @@
 {
   "name": "@fazland/atlante",
+  "version": "0.1.0-alpha",
   "description": "JS Http Client",
   "license": "MIT",
   "main": "lib/api.js",
-  "private": true,
   "directories": {
     "lib": "lib"
   },
