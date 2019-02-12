@@ -1,8 +1,8 @@
-const Client = Atlante.Api.Client;
+const Client = Fazland.Atlante.Api.Client;
 const ContextualClient = require('../../lib/Api/ContextualClient');
-const RequestorInterface = Atlante.Requestor.RequestorInterface;
-const ItemInterface = Atlante.Storage.ItemInterface;
-const StorageInterface = Atlante.Storage.StorageInterface;
+const RequestorInterface = Fazland.Atlante.Requestor.RequestorInterface;
+const ItemInterface = Fazland.Atlante.Storage.ItemInterface;
+const StorageInterface = Fazland.Atlante.Storage.StorageInterface;
 
 const HttpException = require('../../lib/Exception/HttpException');
 const NoTokenAvailableException = require('../../lib/Exception/NoTokenAvailableException');
@@ -35,13 +35,13 @@ describe('[Api] Client', function () {
     });
 
     it('should use client to make request', async () => {
-        const clientToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const clientToken = this._prophet.prophesize(ItemInterface);
         clientToken.isHit().willReturn(true);
         clientToken.get().willReturn('TEST TOKEN');
 
         const response = { data: {}, status: 200, statusText: 'OK' };
 
-        this._tokenStorage.getItem('atlante_client_token')
+        this._tokenStorage.getItem('fazland_atlante_client_token')
             .shouldBeCalled()
             .willReturn(clientToken)
         ;
@@ -68,7 +68,7 @@ describe('[Api] Client', function () {
 
         const response = { data: {}, status: 200, statusText: 'OK' };
 
-        this._tokenStorage.getItem('atlante_client_token')
+        this._tokenStorage.getItem('fazland_atlante_client_token')
             .shouldBeCalled()
             .willReturn(clientToken)
         ;
@@ -95,13 +95,13 @@ describe('[Api] Client', function () {
     });
 
     it('should throw on 404', async () => {
-        const clientToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const clientToken = this._prophet.prophesize(ItemInterface);
         clientToken.isHit().willReturn(true);
         clientToken.get().willReturn('TEST TOKEN');
 
         const response = { data: {}, status: 404, statusText: 'Not Found' };
 
-        this._tokenStorage.getItem('atlante_client_token').willReturn(clientToken);
+        this._tokenStorage.getItem('fazland_atlante_client_token').willReturn(clientToken);
         this._requestor.request('GET', '/', Argument.cetera()).willReturn(response);
 
         let caughtErr;
@@ -116,13 +116,13 @@ describe('[Api] Client', function () {
     });
 
     it('should throw on http error', async () => {
-        const clientToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const clientToken = this._prophet.prophesize(ItemInterface);
         clientToken.isHit().willReturn(true);
         clientToken.get().willReturn('TEST TOKEN');
 
         const response = { data: {}, status: 500, statusText: 'Internal Server Error' };
 
-        this._tokenStorage.getItem('atlante_client_token').willReturn(clientToken);
+        this._tokenStorage.getItem('fazland_atlante_client_token').willReturn(clientToken);
         this._requestor.request('GET', '/', Argument.cetera()).willReturn(response);
 
         let caughtErr;
@@ -138,12 +138,12 @@ describe('[Api] Client', function () {
     });
 
     it('should throw on error requesting token', async () => {
-        const clientToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const clientToken = this._prophet.prophesize(ItemInterface);
         clientToken.isHit().willReturn(false);
 
         const response = { data: {}, status: 404, statusText: 'Not Found' };
 
-        this._tokenStorage.getItem('atlante_client_token').willReturn(clientToken);
+        this._tokenStorage.getItem('fazland_atlante_client_token').willReturn(clientToken);
         this._requestor.request('POST', '/token', Argument.cetera()).willReturn(response);
 
         let caughtErr;
@@ -157,12 +157,12 @@ describe('[Api] Client', function () {
     });
 
     it('should emit error event on error requesting token', async () => {
-        const clientToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const clientToken = this._prophet.prophesize(ItemInterface);
         clientToken.isHit().willReturn(false);
 
         const response = { data: {}, status: 404, statusText: 'Not Found' };
 
-        this._tokenStorage.getItem('atlante_client_token').willReturn(clientToken);
+        this._tokenStorage.getItem('fazland_atlante_client_token').willReturn(clientToken);
         this._requestor.request('POST', '/token', Argument.cetera()).willReturn(response);
 
         let caughtErr;
@@ -173,13 +173,13 @@ describe('[Api] Client', function () {
     });
 
     it('should JSON-encode data if not a GET/HEAD/DELETE request', async () => {
-        const clientToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const clientToken = this._prophet.prophesize(ItemInterface);
         clientToken.isHit().willReturn(true);
         clientToken.get().willReturn('TEST TOKEN');
 
         const response = { data: {}, status: 200, statusText: 'OK' };
 
-        this._tokenStorage.getItem('atlante_client_token').willReturn(clientToken);
+        this._tokenStorage.getItem('fazland_atlante_client_token').willReturn(clientToken);
         this._requestor
             .request('POST', '/test', Argument.any(), '{"test":"foo"}')
             .shouldBeCalled()

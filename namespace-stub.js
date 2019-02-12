@@ -5,19 +5,24 @@
 /**
  * @namespace
  */
-Atlante = {
+Fazland = {
     /**
      * @namespace
      */
-    Api: {},
+    Atlante: {
+        /**
+         * @namespace
+         */
+        Api: {},
 
-    /**
-     * @namespace
-     */
-    Requestor: {},
+        /**
+         * @namespace
+         */
+        Requestor: {},
 
-    /**
-     * @namespace
-     */
-    Storage: {},
+        /**
+         * @namespace
+         */
+        Storage: {},
+    }
 };

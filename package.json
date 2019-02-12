@@ -27,7 +27,7 @@
   "config": {
     "jymfony-autoload": {
       "namespaces": {
-        "Atlante": "lib"
+        "Fazland.Atlante": "lib"
       }
     }
   },

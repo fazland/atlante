@@ -1,6 +1,7 @@
-const ContextualClient = Atlante.Api.ContextualClient;
-const RequestorInterface = Atlante.Requestor.RequestorInterface;
-const StorageInterface = Atlante.Storage.StorageInterface;
+const ContextualClient = Fazland.Atlante.Api.ContextualClient;
+const RequestorInterface = Fazland.Atlante.Requestor.RequestorInterface;
+const StorageInterface = Fazland.Atlante.Storage.StorageInterface;
+const ItemInterface = Fazland.Atlante.Storage.ItemInterface;
 
 const Prophet = Jymfony.Component.Testing.Prophet;
 const expect = require('chai').expect;
@@ -33,7 +34,7 @@ describe('[Api] ContectualClient', function () {
     });
 
     it('should use user token to make request', async () => {
-        const clientToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const clientToken = this._prophet.prophesize(ItemInterface);
         clientToken.isHit().willReturn(true);
         clientToken.get().willReturn('TEST TOKEN');
 
@@ -59,13 +60,13 @@ describe('[Api] ContectualClient', function () {
     });
 
     it('should request a new token via refresh token', async () => {
-        const clientToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const clientToken = this._prophet.prophesize(ItemInterface);
         clientToken.isHit().willReturn(false);
         clientToken.set('TEST TOKEN').willReturn();
         clientToken.get().willReturn('TEST TOKEN');
         clientToken.expiresAfter(3540).willReturn();
 
-        const refreshToken = this._prophet.prophesize(Atlante.Storage.ItemInterface);
+        const refreshToken = this._prophet.prophesize(ItemInterface);
         refreshToken.isHit().willReturn(true);
         refreshToken.get().willReturn('REFRESH TOKEN');
         refreshToken.set('REFRESH AGAIN').willReturn();
