@@ -1,13 +1,14 @@
 {
   "name": "@fazland/atlante",
   "description": "JS Http Client",
+  "license": "MIT",
   "main": "lib/api.js",
   "private": true,
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "node $NODE_DEBUG_OPTION ./tests.js \"test/**/*.js\" && eslint lib/",
+    "test": "node ./tests.js \"test/**/*.js\" && eslint lib/",
     "coverage": "nyc npm test",
     "coverage-html": "nyc --reporter=html npm test"
   },

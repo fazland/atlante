@@ -13,6 +13,7 @@ os:
 
 install:
     - npm install -g eslint
+    - if [ "$TRAVIS_NODE_VERSION" == "8" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then npm install -g nyc; fi
     - npm install
 
 script:
