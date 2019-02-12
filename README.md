@@ -1,6 +1,6 @@
 Fazland - ApiPlatformBundle
 ===========================
-[![Build Status](https://travis-ci.org/fazland/atlante.svg?branch=master)](https://travis-ci.org/fazland/atlante)
+[![Build Status](https://travis-ci.com/fazland/atlante.svg?branch=master)](https://travis-ci.com/fazland/atlante)
 
 This bundle helps to build RESTful API within a Symfony project.
 
