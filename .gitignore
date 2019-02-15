@@ -63,4 +63,4 @@ yarn.lock
 .next
 
 var/
-
+package-lock.json
