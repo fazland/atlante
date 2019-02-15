@@ -5,6 +5,11 @@ import ClientInterface = require('./ClientInterface');
 import RequestorInterface = require('../Requestor/RequestorInterface');
 
 declare class Client implements ClientInterface {
+    /**
+     * Empty promise used as mutex.
+     */
+    protected _tokenMutex: Promise<void>;
+
     constructor(requestor: RequestorInterface, tokenStorage: StorageInterface, config: any);
 
     /**
@@ -51,6 +56,11 @@ declare class Client implements ClientInterface {
      * Filters a response, eventually throwing an error in case response status is not successful.
      */
     protected _filterResponse(response: Response): void;
+
+    /**
+     * Acquires mutex for token requests.
+     */
+    protected _acquireMutex(): Promise<Function>;
 }
 
 export = Client;

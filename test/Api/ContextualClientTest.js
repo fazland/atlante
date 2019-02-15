@@ -6,7 +6,7 @@ const ItemInterface = Fazland.Atlante.Storage.ItemInterface;
 const Prophet = Jymfony.Component.Testing.Prophet;
 const expect = require('chai').expect;
 
-describe('[Api] ContectualClient', function () {
+describe('[Api] ContextualClient', function () {
     beforeEach(() => {
         /**
          * @type {Jymfony.Component.Testing.Prophet}
