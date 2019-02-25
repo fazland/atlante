@@ -15,7 +15,7 @@ declare abstract class AbstractStorage implements StorageInterface {
     /**
      * @inheritdoc
      */
-    hasItem(key: string): Promise<boolean>;
+    abstract hasItem(key: string): Promise<boolean>;
 
     /**
      * @inheritdoc
@@ -25,7 +25,7 @@ declare abstract class AbstractStorage implements StorageInterface {
     /**
      * @inheritdoc
      */
-    deleteItem(key: string): Promise<boolean>;
+    abstract deleteItem(key: string): Promise<boolean>;
 
     /**
      * @inheritdoc
