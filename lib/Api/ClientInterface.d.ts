@@ -20,27 +20,27 @@ declare interface ClientInterface {
      *
      * @throws {NoTokenAvailableException} When no token could be provided for the request.
      */
-    request<T = any>(method: string, path: string, requestData?: any): Promise<void|Response<T>>;
+    request<T = any>(method: string, path: string, requestData?: any, headers?: {}): Promise<void|Response<T>>;
 
     /**
      * Performs a request to the API service using a GET method.
      */
-    get<T = any>(path: string): Promise<Response<T>>;
+    get<T = any>(path: string, headers?: {}): Promise<Response<T>>;
 
     /**
      * Performs a request to the API service using a POST method.
      */
-    post<T = any>(path: string, requestData?: any): Promise<Response<T>>;
+    post<T = any>(path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
      * Performs a request to the API service using a PATCH method.
      */
-    patch<T = any>(path: string, requestData?: any): Promise<Response<T>>;
+    patch<T = any>(path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
      * Performs a request to the API service using a PATCH method with merge patch header set.
      */
-    mergePatch<T = any>(path: string, requestData?: any): Promise<Response<T>>;
+    mergePatch<T = any>(path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
      * Gets a context-aware client.

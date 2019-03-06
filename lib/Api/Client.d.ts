@@ -16,27 +16,27 @@ declare class Client implements ClientInterface {
     /**
      * @inheritdoc
      */
-    request<T = any>(method: string, path: string, requestData?: any): Promise<Response<T>>;
+    request<T = any>(method: string, path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
      * @inheritdoc
      */
-    get<T = any>(path: string): Promise<Response<T>>;
+    get<T = any>(path: string, headers?: {}): Promise<Response<T>>;
 
     /**
      * @inheritdoc
      */
-    post<T = any>(path: string, requestData?: any): Promise<Response<T>>;
+    post<T = any>(path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
      * @inheritdoc
      */
-    patch<T = any>(path: string, requestData?: any): Promise<Response<T>>;
+    patch<T = any>(path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
      * @inheritdoc
      */
-    mergePatch<T = any>(path: string, requestData?: any): Promise<Response<T>>;
+    mergePatch<T = any>(path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
      * @inheritdoc
