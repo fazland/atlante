@@ -15,6 +15,11 @@ declare class ContextualClient extends Client implements ContextualClientInterfa
      * Authenticates user.
      */
     authenticate(username: string, password: string): Promise<void>;
+
+    /**
+     * Logs user out.
+     */
+    logout(): Promise<void>;
 }
 
 export = ContextualClient;
