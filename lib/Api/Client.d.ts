@@ -56,7 +56,11 @@ declare class Client implements ClientInterface {
     /**
      * Filters a response, eventually throwing an error in case response status is not successful.
      */
-    protected _filterResponse(response: Response): void;
+    protected _filterResponse(response: Response): void;/**
+
+     * Gets the token for the current api client.
+     */
+    protected _getToken(): Promise<string>;
 }
 
 export = Client;
