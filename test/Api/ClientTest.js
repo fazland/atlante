@@ -172,23 +172,6 @@ describe('[Api] Client', function () {
         expect(caughtErr).to.be.instanceOf(NoTokenAvailableException);
     });
 
-    it('should JSON-encode data if not a GET/HEAD/DELETE request', async () => {
-        const clientToken = this._prophet.prophesize(ItemInterface);
-        clientToken.isHit().willReturn(true);
-        clientToken.get().willReturn('TEST TOKEN');
-
-        const response = { data: {}, status: 200, statusText: 'OK' };
-
-        this._tokenStorage.getItem('fazland_atlante_client_token').willReturn(clientToken);
-        this._requestor
-            .request('POST', '/test', Argument.any(), '{"test":"foo"}')
-            .shouldBeCalled()
-            .willReturn(response)
-        ;
-
-        await this._client.post('/test', { test: 'foo' });
-    });
-
     it('should make a contextual client', () => {
         const tokenStorage = this._prophet.prophesize(StorageInterface);
 
