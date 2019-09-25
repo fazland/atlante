@@ -1,4 +1,4 @@
-const InMemoryStorage = require('../../lib/Storage/InMemoryStorage');
+const InMemoryStorage = Fazland.Atlante.Storage.InMemoryStorage;
 const AdapterTestCase = require('./AdapterTestCase');
 
 describe('[Storage] InMemoryStorage', function () {

@@ -1,16 +1,16 @@
 const Client = Fazland.Atlante.Api.Client;
-const ContextualClient = require('../../lib/Api/ContextualClient');
+const ContextualClient = Fazland.Atlante.Api.ContextualClient;
 const RequestorInterface = Fazland.Atlante.Requestor.RequestorInterface;
 const ItemInterface = Fazland.Atlante.Storage.ItemInterface;
 const StorageInterface = Fazland.Atlante.Storage.StorageInterface;
 
-const HttpException = require('../../lib/Exception/HttpException');
-const NoTokenAvailableException = require('../../lib/Exception/NoTokenAvailableException');
-const NotFoundHttpException = require('../../lib/Exception/NotFoundHttpException');
+const HttpException = Fazland.Atlante.Exception.HttpException;
+const NoTokenAvailableException = Fazland.Atlante.Exception.NoTokenAvailableException;
+const NotFoundHttpException = Fazland.Atlante.Exception.NotFoundHttpException;
 
 const Argument = Jymfony.Component.Testing.Argument.Argument;
 const Prophet = Jymfony.Component.Testing.Prophet;
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('[Api] Client', function () {
     beforeEach(() => {

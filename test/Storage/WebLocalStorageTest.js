@@ -1,7 +1,8 @@
 const LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
+const { tmpdir } = require('os');
+localStorage = new LocalStorage(tmpdir() + '/scratch');
 
-const WebLocalStorage = require('../../lib/Storage/WebLocalStorage');
+const WebLocalStorage = Fazland.Atlante.Storage.WebLocalStorage;
 const AdapterTestCase = require('./AdapterTestCase');
 
 describe('[Storage] WebLocalStorage', function () {

@@ -22,7 +22,7 @@ declare class ArrayUtils {
     /**
      * Computes the difference between two objects.
      */
-    static computePatchObject(originalData: { [key: string]: any }, newData: { [key: string]: any }): [string, any][];
+    static computePatchObject(originalData: { [key: string]: any }, newData: { [key: string]: any }): { [key: string]: any };
 }
 
 export = ArrayUtils;

@@ -24,5 +24,10 @@ Fazland = {
          * @namespace
          */
         Storage: {},
+
+        /**
+         * @namespace
+         */
+        Utils: {},
     }
 };

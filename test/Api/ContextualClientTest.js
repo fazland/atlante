@@ -4,7 +4,7 @@ const StorageInterface = Fazland.Atlante.Storage.StorageInterface;
 const ItemInterface = Fazland.Atlante.Storage.ItemInterface;
 
 const Prophet = Jymfony.Component.Testing.Prophet;
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('[Api] ContextualClient', function () {
     beforeEach(() => {
@@ -108,5 +108,44 @@ describe('[Api] ContextualClient', function () {
         expect(await this._client.request('GET', '/'))
             .to.be.equal(response)
         ;
+    });
+
+    it ('authenticate should request a new token', async () => {
+        const clientToken = this._prophet.prophesize(ItemInterface);
+        clientToken.isHit().willReturn(false);
+        clientToken.set('TEST TOKEN').willReturn();
+        clientToken.expiresAfter(3000).willReturn();
+
+        const refreshToken = this._prophet.prophesize(ItemInterface);
+        refreshToken.isHit().willReturn(true);
+        refreshToken.set('REFRESH TOKEN').willReturn();
+
+        this._userTokenStorage.getItem('access_token').willReturn(clientToken);
+        this._userTokenStorage.getItem('refresh_token').willReturn(refreshToken);
+
+        this._userTokenStorage.save(clientToken).shouldBeCalled();
+        this._userTokenStorage.save(refreshToken).shouldBeCalled();
+
+        const tokenResponse = {
+            data: {
+                access_token: 'TEST TOKEN',
+                expires_in: 3600,
+                refresh_token: 'REFRESH TOKEN'
+            }, status: 200, statusText: 'OK'
+        };
+
+        this._requestor
+            .request('POST', '/token', {}, {
+                grant_type: 'password',
+                client_id: 'foo_id',
+                client_secret: 'foo_secret',
+                username: 'username',
+                password: 'password'
+            })
+            .shouldBeCalled()
+            .willReturn(tokenResponse)
+        ;
+
+        await this._client.authenticate('username', 'password');
     });
 });
