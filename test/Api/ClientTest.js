@@ -178,4 +178,58 @@ describe('[Api] Client', function () {
         const ctxClient = this._client.withContext(tokenStorage.reveal());
         expect(ctxClient).to.be.instanceOf(ContextualClient);
     });
+
+    it ('requests after token expiration should refresh the token', async () => {
+        const clientToken = this._prophet.prophesize(ItemInterface);
+        clientToken.isHit().willReturn(false);
+        clientToken.set('TEST TOKEN').willReturn();
+        clientToken.expiresAfter(3540).willReturn();
+
+        this._tokenStorage.getItem('fazland_atlante_client_token').will(async () => {
+            await __jymfony.sleep(50);
+
+            return clientToken.reveal();
+        });
+
+        this._tokenStorage.save(clientToken)
+            .shouldBeCalledTimes(1)
+            .will(async function () {
+                clientToken.isHit().willReturn(true);
+                clientToken.get().willReturn('TEST TOKEN');
+            });
+
+        const tokenResponse = {
+            data: {
+                access_token: 'TEST TOKEN',
+                expires_in: 3600,
+            }, status: 200, statusText: 'OK'
+        };
+
+        this._requestor.request('GET', '/', Argument.any(), Argument.any())
+            .willReturn({ data: {}, status: 200, statusText: 'OK' }).shouldBeCalledTimes(1);
+        this._requestor.request('POST', '/resources', Argument.any(), Argument.any())
+            .willReturn({ data: {}, status: 200, statusText: 'OK' }).shouldBeCalledTimes(1);
+        this._requestor.request('PATCH', '/res1', Argument.any(), Argument.any())
+            .willReturn({ data: {}, status: 200, statusText: 'OK' }).shouldBeCalledTimes(1);
+
+        this._requestor
+            .request('POST', '/token', {}, {
+                grant_type: 'client_credentials',
+                client_id: 'foo_id',
+                client_secret: 'foo_secret',
+            })
+            .shouldBeCalledTimes(1)
+            .will(async () => {
+                await __jymfony.sleep(100);
+
+                return tokenResponse;
+            })
+        ;
+
+        const r1 = this._client.get('/');
+        const r2 = this._client.post('/resources');
+        const r3 = this._client.patch('/res1');
+
+        await Promise.all([ r1, r2, r3 ]);
+    });
 });
