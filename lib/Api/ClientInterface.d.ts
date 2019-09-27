@@ -15,7 +15,7 @@ declare interface ClientInterface {
      *
      * @throws {NoTokenAvailableException} When no token could be provided for the request.
      */
-    request<T = any>(method: string, path: string, requestData?: any, headers?: {}): Promise<void|Response<T>>;
+    request<T = any>(method: string, path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
      * Performs a request to the API service using a GET method.
