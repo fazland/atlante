@@ -1,4 +1,4 @@
-import MarshallerInterface = require("./MarshallerInterface");
+import MarshallerInterface from './MarshallerInterface';
 
 declare class NullMarshaller implements MarshallerInterface {
     /**
@@ -12,4 +12,4 @@ declare class NullMarshaller implements MarshallerInterface {
     unmarshall(value: string): any;
 }
 
-export = NullMarshaller;
+export default NullMarshaller;

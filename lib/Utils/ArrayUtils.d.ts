@@ -25,4 +25,4 @@ declare class ArrayUtils {
     static computePatchObject(originalData: { [key: string]: any }, newData: { [key: string]: any }): { [key: string]: any };
 }
 
-export = ArrayUtils;
+export default ArrayUtils;

@@ -1,7 +1,7 @@
 /**
  * Storage interface
  */
-import ItemInterface = require("./ItemInterface");
+import ItemInterface from './ItemInterface';
 
 declare interface StorageInterface {
     /**
@@ -37,4 +37,4 @@ declare interface StorageInterface {
     save(item: ItemInterface): Promise<boolean>;
 }
 
-export = StorageInterface;
+export default StorageInterface;

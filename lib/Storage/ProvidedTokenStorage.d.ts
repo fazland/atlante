@@ -1,4 +1,4 @@
-import AbstractStorage = require("./AbstractStorage");
+import AbstractStorage from './AbstractStorage';
 
 declare class ProvidedTokenStorage extends AbstractStorage {
     private _accessToken?: string;
@@ -38,4 +38,4 @@ declare class ProvidedTokenStorage extends AbstractStorage {
     _save(key: string, value: any, expiry: Date): Promise<boolean>;
 }
 
-export = ProvidedTokenStorage;
+export default ProvidedTokenStorage;

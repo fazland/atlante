@@ -1,5 +1,4 @@
 const Client = Fazland.Atlante.Api.Client;
-const ContextualClient = Fazland.Atlante.Api.ContextualClient;
 const RequestorInterface = Fazland.Atlante.Requestor.RequestorInterface;
 const ItemInterface = Fazland.Atlante.Storage.ItemInterface;
 const StorageInterface = Fazland.Atlante.Storage.StorageInterface;
@@ -156,27 +155,12 @@ describe('[Api] Client', function () {
         expect(caughtErr).to.be.instanceOf(NoTokenAvailableException);
     });
 
-    it('should emit error event on error requesting token', async () => {
-        const clientToken = this._prophet.prophesize(ItemInterface);
-        clientToken.isHit().willReturn(false);
-
-        const response = { data: {}, status: 404, statusText: 'Not Found' };
-
-        this._tokenStorage.getItem('fazland_atlante_client_token').willReturn(clientToken);
-        this._requestor.request('POST', '/token', Argument.cetera()).willReturn(response);
-
-        let caughtErr;
-        this._client.on('error', e => caughtErr = e);
-        await this._client.request('GET', '/');
-
-        expect(caughtErr).to.be.instanceOf(NoTokenAvailableException);
-    });
-
     it('should make a contextual client', () => {
         const tokenStorage = this._prophet.prophesize(StorageInterface);
 
         const ctxClient = this._client.withContext(tokenStorage.reveal());
-        expect(ctxClient).to.be.instanceOf(ContextualClient);
+        expect(ctxClient).to.be.instanceOf(Client);
+        expect(ctxClient.authenticate).not.to.be.undefined;
     });
 
     it ('requests after token expiration should refresh the token', async () => {

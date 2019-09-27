@@ -14,12 +14,12 @@
   },
   "author": "devs@fazland.com",
   "dependencies": {
-    "@jymfony/util": "^0.1.0-alpha.13"
+    "@jymfony/util": "^0.1.0-alpha.18"
   },
   "devDependencies": {
-    "@jymfony/autoloader": "^0.1.0-alpha.13",
-    "@jymfony/debug": "^0.1.0-alpha.13",
-    "@jymfony/testing": "^0.1.0-alpha.13",
+    "@jymfony/autoloader": "^0.1.0-alpha.18",
+    "@jymfony/debug": "^0.1.0-alpha.18",
+    "@jymfony/testing": "^0.1.0-alpha.18",
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
     "node-localstorage": "^1.3.1",
@@ -35,7 +35,7 @@
   },
   "nyc": {
     "per-file": true,
-    "hookRequire": false,
+    "hookRequire": true,
     "hookRunInContext": true,
     "hookRunInThisContext": true,
     "include": [

@@ -1,4 +1,4 @@
-import AbstractStorage = require("./AbstractStorage");
+import AbstractStorage from './AbstractStorage';
 
 declare class CookieStorage extends AbstractStorage {
     constructor(cookieDomain?: string, defaultLifetime?: number);
@@ -24,4 +24,4 @@ declare class CookieStorage extends AbstractStorage {
     protected _save(key: string, value: string, expiry: Date): Promise<boolean>;
 }
 
-export = CookieStorage;
+export default CookieStorage;

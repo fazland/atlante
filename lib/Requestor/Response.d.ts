@@ -5,4 +5,4 @@ declare interface Response<T = any> {
     readonly headers: Headers;
 }
 
-export = Response;
+export default Response;

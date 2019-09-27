@@ -10,4 +10,4 @@ declare interface MarshallerInterface {
     unmarshall(value: string): any;
 }
 
-export = MarshallerInterface;
+export default MarshallerInterface;

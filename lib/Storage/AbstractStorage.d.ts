@@ -1,6 +1,6 @@
-import MarshallerInterface = require('./Marshaller/MarshallerInterface');
-import StorageInterface = require('./StorageInterface');
-import ItemInterface = require('./ItemInterface');
+import MarshallerInterface from './Marshaller/MarshallerInterface';
+import StorageInterface from './StorageInterface';
+import ItemInterface from './ItemInterface';
 
 declare abstract class AbstractStorage implements StorageInterface {
     public marshaller: MarshallerInterface;
@@ -43,4 +43,4 @@ declare abstract class AbstractStorage implements StorageInterface {
     protected abstract _save(key: string, value: string, expiry: Date): Promise<boolean>;
 }
 
-export = AbstractStorage;
+export default AbstractStorage;

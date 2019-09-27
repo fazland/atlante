@@ -1,4 +1,4 @@
-import MarshallerInterface = require("./MarshallerInterface");
+import MarshallerInterface from './MarshallerInterface'
 
 declare class JSONMarshaller implements MarshallerInterface {
     /**
@@ -12,4 +12,4 @@ declare class JSONMarshaller implements MarshallerInterface {
     unmarshall(value: string): any;
 }
 
-export = JSONMarshaller;
+export default JSONMarshaller;

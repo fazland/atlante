@@ -1,4 +1,4 @@
-import AbstractStorage = require('./AbstractStorage');
+import AbstractStorage from './AbstractStorage';
 
 /**
  * @implements StorageInterface
@@ -25,4 +25,4 @@ declare class WebLocalStorage extends AbstractStorage {
     protected _save(key: string, value: string, expiry: Date): Promise<boolean>;
 }
 
-export = WebLocalStorage;
+export default WebLocalStorage;

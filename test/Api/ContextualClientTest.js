@@ -1,4 +1,4 @@
-const ContextualClient = Fazland.Atlante.Api.ContextualClient;
+const Client = Fazland.Atlante.Api.Client;
 const RequestorInterface = Fazland.Atlante.Requestor.RequestorInterface;
 const StorageInterface = Fazland.Atlante.Storage.StorageInterface;
 const ItemInterface = Fazland.Atlante.Storage.ItemInterface;
@@ -19,15 +19,14 @@ describe('[Api] ContextualClient', function () {
         this._requestor = this._prophet.prophesize(RequestorInterface);
         this._tokenStorage = this._prophet.prophesize(StorageInterface);
         this._userTokenStorage = this._prophet.prophesize(StorageInterface);
-        this._client = new ContextualClient(
-            this._userTokenStorage.reveal(),
+        this._client = new Client(
             this._requestor.reveal(),
             this._tokenStorage.reveal(),
             {
                 client_id: 'foo_id',
                 client_secret: 'foo_secret',
             }
-        );
+        ).withContext(this._userTokenStorage.reveal());
     });
 
     afterEach(() => {

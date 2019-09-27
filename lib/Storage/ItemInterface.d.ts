@@ -65,4 +65,4 @@ declare interface ItemInterface {
     expiresAfter(time: number | undefined): ItemInterface;
 }
 
-export = ItemInterface;
+export default ItemInterface;

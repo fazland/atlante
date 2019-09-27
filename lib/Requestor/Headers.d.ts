@@ -25,4 +25,4 @@ declare class Headers {
     add(name: string, value: string | string[]): Headers;
 }
 
-export = Headers;
+export default Headers;

@@ -1,13 +1,8 @@
-import ContextualClientInterface = require('./ContextualClientInterface');
-import StorageInterface = require('../Storage/StorageInterface');
-import Response = require('../Requestor/Response');
+import ContextualClientInterface from './ContextualClientInterface';
+import StorageInterface from '../Storage/StorageInterface';
+import Response from '../Requestor/Response';
 
 declare interface ClientInterface {
-    /**
-     * Adds an event listener.
-     */
-    on(type: string, listener: Function): void;
-
     /**
      * Performs a request to the API service using the given method.
      *
@@ -48,4 +43,4 @@ declare interface ClientInterface {
     withContext(tokenStorage: StorageInterface): ContextualClientInterface;
 }
 
-export = ClientInterface;
+export default ClientInterface;

@@ -1,4 +1,4 @@
-import ClientInterface = require('./ClientInterface');
+import ClientInterface from './ClientInterface';
 
 declare interface ContextualClientInterface extends ClientInterface {
     /**
@@ -12,4 +12,4 @@ declare interface ContextualClientInterface extends ClientInterface {
     logout(): Promise<void>;
 }
 
-export = ContextualClientInterface;
+export default ContextualClientInterface;

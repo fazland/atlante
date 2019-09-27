@@ -1,17 +1,36 @@
-import ContextualClientInterface = require('./ContextualClientInterface');
-import StorageInterface = require('../Storage/StorageInterface');
-import Response = require('../Requestor/Response');
-import ClientInterface = require('./ClientInterface');
-import RequestorInterface = require('../Requestor/RequestorInterface');
-import Mutex = require("../Utils/Mutex");
+import ClientInterface from './ClientInterface';
+import ContextualClientInterface from './ContextualClientInterface';
+import Response from '../Requestor/Response';
+import RequestorInterface from '../Requestor/RequestorInterface';
+import StorageInterface from '../Storage/StorageInterface';
+
+declare interface ClientConfig {
+    client_id: string;
+    client_secret: string;
+    version?: string;
+}
+
+declare class ContextualClient extends Client implements ContextualClientInterface {
+    constructor(tokenStorage: StorageInterface, requestor: RequestorInterface, clientTokenStorage: StorageInterface, config: ClientConfig);
+
+    /**
+     * Authenticates user.
+     */
+    authenticate(username: string, password: string): Promise<void>;
+
+    /**
+     * Logs user out.
+     */
+    logout(): Promise<void>;
+}
 
 declare class Client implements ClientInterface {
     /**
-     * Empty promise used as mutex.
+     * Token mutex.
      */
-    protected _tokenMutex: Mutex;
+    protected _tokenMutex: __jymfony.Mutex;
 
-    constructor(requestor: RequestorInterface, tokenStorage: StorageInterface, config: any);
+    constructor(requestor: RequestorInterface, tokenStorage: StorageInterface, config: ClientConfig);
 
     /**
      * @inheritdoc
@@ -44,23 +63,14 @@ declare class Client implements ClientInterface {
     withContext(tokenStorage: StorageInterface): ContextualClientInterface;
 
     /**
-     * @inheritdoc
-     */
-    on(type: string, listener: Function): void;
-
-    /**
-     * Emits an event
-     */
-    protected _emit(type: string, ...args: any[]): void;
-
-    /**
      * Filters a response, eventually throwing an error in case response status is not successful.
      */
-    protected _filterResponse(response: Response): void;/**
+    protected _filterResponse(response: Response): void;
 
+    /**
      * Gets the token for the current api client.
      */
     protected _getToken(): Promise<string>;
 }
 
-export = Client;
+export default Client;

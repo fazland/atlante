@@ -1,6 +1,6 @@
-import HttpException = require('./HttpException');
+import HttpException from './HttpException';
 
 declare class NotFoundHttpException extends HttpException {
 }
 
-export = NotFoundHttpException;
+export default NotFoundHttpException;

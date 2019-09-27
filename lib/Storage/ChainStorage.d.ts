@@ -1,5 +1,5 @@
-import StorageInterface = require("./StorageInterface");
-import ItemInterface = require("./ItemInterface");
+import ItemInterface from './ItemInterface';
+import StorageInterface from './StorageInterface';
 
 declare class ChainStorage implements StorageInterface {
     private _storages: StorageInterface[];
@@ -44,4 +44,4 @@ declare class ChainStorage implements StorageInterface {
     private _call(method: string, ...args: any[]): Promise<any>;
 }
 
-export = ChainStorage;
+export default ChainStorage;

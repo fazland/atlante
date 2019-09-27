@@ -1,4 +1,4 @@
-import Response = require("./Response");
+import Response from './Response';
 
 declare interface RequestorInterface {
     /**
@@ -8,4 +8,4 @@ declare interface RequestorInterface {
     request<T = any>(method: string, path: string, headers?: any, requestData?: any): Promise<Response<T>>;
 }
 
-export = RequestorInterface;
+export default RequestorInterface;

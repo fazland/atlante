@@ -1,4 +1,4 @@
 declare class NoTokenAvailableException extends Error {
 }
 
-export = NoTokenAvailableException;
+export default NoTokenAvailableException;

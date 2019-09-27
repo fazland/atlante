@@ -5,4 +5,4 @@ declare class HttpException extends Error {
     readonly response: Response|undefined;
 }
 
-export = HttpException;
+export default HttpException;

@@ -1,6 +1,6 @@
-import StorageInterface = require("./StorageInterface");
-import MarshallerInterface = require("./Marshaller/MarshallerInterface");
-import ItemInterface = require("./ItemInterface");
+import StorageInterface from './StorageInterface';
+import MarshallerInterface from './Marshaller/MarshallerInterface';
+import ItemInterface from './ItemInterface';
 
 declare class InMemoryStorage implements StorageInterface {
     public marshaller: MarshallerInterface;
@@ -38,4 +38,4 @@ declare class InMemoryStorage implements StorageInterface {
     save(item: ItemInterface): Promise<boolean>;
 }
 
-export = InMemoryStorage;
+export default InMemoryStorage;

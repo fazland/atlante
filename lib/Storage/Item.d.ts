@@ -1,4 +1,4 @@
-import ItemInterface = require("./ItemInterface");
+import ItemInterface from './ItemInterface';
 
 declare class Item implements ItemInterface {
     /**
@@ -32,4 +32,4 @@ declare class Item implements ItemInterface {
     expiresAfter(time: number | undefined): ItemInterface;
 }
 
-export = Item;
+export default Item;
