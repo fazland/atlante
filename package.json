@@ -4,6 +4,7 @@
   "description": "JS Http Client",
   "license": "MIT",
   "main": "lib/api.js",
+  "typings": "index.d.ts",
   "directories": {
     "lib": "lib"
   },
