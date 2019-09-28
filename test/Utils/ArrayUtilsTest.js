@@ -2,7 +2,7 @@ const ArrayUtils = Fazland.Atlante.Utils.ArrayUtils;
 const { expect } = require('chai');
 
 describe('[Util] ArrayUtils', function () {
-    it ('toCamelCaseKeys should work correctly', () => {
+    it ('toCamelCaseKeys should convert keys recursively on an object', () => {
         const o = {
             snake_key: 'foobar',
             camelCase: 'barbar',
@@ -42,7 +42,37 @@ describe('[Util] ArrayUtils', function () {
         });
     });
 
-    it ('toSnakeCaseKeys should work correctly', () => {
+    it ('toCamelCaseKeys should convert keys recursively on an array', () => {
+        const o = [
+            {
+                snake_key: 'foobar',
+                camelCase: 'barbar',
+                foo_barBaz: 'baz',
+                foo_barBAR: 'baz',
+                foo_bar_123: 'baz',
+            },
+            [
+                { snake_key: 'camel' },
+                { foo_BarBaz: 'barbar', foo_barBAR: 'baz' },
+            ],
+        ];
+
+        expect(ArrayUtils.toCamelCaseKeys(o)).to.be.deep.eq([
+            {
+                snakeKey: 'foobar',
+                camelCase: 'barbar',
+                fooBarBaz: 'baz',
+                fooBarBAR: 'baz',
+                fooBar_123: 'baz',
+            },
+            [
+                { snakeKey: 'camel' },
+                { fooBarBaz: 'barbar', fooBarBAR: 'baz' },
+            ],
+        ]);
+    });
+
+    it ('toSnakeCaseKeys should convert keys recursively on an object', () => {
         const o = {
             snake_key: 'foobar',
             camelCase: 'barbar',
@@ -80,6 +110,36 @@ describe('[Util] ArrayUtils', function () {
                 { foo_bar_baz: 'barbar', foo_bar_BAR: 'baz' },
             ],
         });
+    });
+
+    it ('toSnakeCaseKeys should convert keys recursively on an array', () => {
+        const o = [
+            {
+                snake_key: 'foobar',
+                camelCase: 'barbar',
+                fooBarBaz: 'baz',
+                fooBar_BAR: 'baz',
+                foo_bar_123: 'baz',
+            },
+            [
+                { camelCase: 'camel' },
+                { fooBarBaz: 'barbar', fooBar_BAR: 'baz' },
+            ],
+        ];
+
+        expect(ArrayUtils.toSnakeCaseKeys(o)).to.be.deep.eq([
+            {
+                snake_key: 'foobar',
+                camel_case: 'barbar',
+                foo_bar_baz: 'baz',
+                foo_bar_BAR: 'baz',
+                foo_bar_123: 'baz',
+            },
+            [
+                { camel_case: 'camel' },
+                { foo_bar_baz: 'barbar', foo_bar_BAR: 'baz' },
+            ],
+        ]);
     });
 
     it ('ksort should work correctly', () => {

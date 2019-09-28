@@ -2,12 +2,14 @@ declare class ArrayUtils {
     /**
      * Recursively converts all the keys to camel case.
      */
-    static toCamelCaseKeys(input: { [key: string]: any }): { [key: string]: any };
+    static toCamelCaseKeys<T = any>(input: T[]): T[];
+    static toCamelCaseKeys<T = any>(input: { [key: string]: T }): { [key: string]: T };
 
     /**
      * Recursively converts all the keys to snake case.
      */
-    static toSnakeCaseKeys(input: { [key: string]: any }): { [key: string]: any };
+    static toSnakeCaseKeys<T = any>(input: T[]): T[];
+    static toSnakeCaseKeys<T = any>(input: { [key: string]: T }): { [key: string]: T };
 
     /**
      * Sort an object by keys.
