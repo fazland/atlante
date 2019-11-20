@@ -1,5 +1,6 @@
 import ClientInterface from './ClientInterface';
 import ContextualClientInterface from './ContextualClientInterface';
+import Request from "../Requestor/Request";
 import Response from '../Requestor/Response';
 import RequestorInterface from '../Requestor/RequestorInterface';
 import StorageInterface from '../Storage/StorageInterface';
@@ -65,7 +66,7 @@ declare class Client implements ClientInterface {
     /**
      * Filters a response, eventually throwing an error in case response status is not successful.
      */
-    protected _filterResponse(response: Response): void;
+    protected _filterResponse(request: Request, response: Response): void;
 
     /**
      * Gets the token for the current api client.

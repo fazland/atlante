@@ -1,8 +1,9 @@
-declare interface Response<T = any> {
+import HttpMessage from "./HttpMessage";
+
+declare interface Response<T = any> extends HttpMessage {
     readonly data: T;
     readonly status: number;
     readonly statusText: string;
-    readonly headers: Headers;
 }
 
 export default Response;
