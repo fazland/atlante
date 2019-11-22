@@ -51,6 +51,11 @@ declare class Client implements ClientInterface {
     /**
      * @inheritdoc
      */
+    put<T = any>(path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
+
+    /**
+     * @inheritdoc
+     */
     patch<T = any>(path: string, requestData?: any, headers?: {}): Promise<Response<T>>;
 
     /**
